@@ -6,20 +6,20 @@ const Hints = require('../constant/hints')
  * @param {日志数组} logs
  */
 async function save(logs) {
-    if (null == logs || logs.length <=0 ) throw Hints.REQ_PARAM_ERROR
-    const keys = ['appId', 'appVersion', 'phoneModel']
-    const targets = logs.filter(log => {
+    if (null == logs || logs.length <=0 ) throw Error(Hints.REQ_PARAM_ERROR)
+    const keys = ['appId', 'appVersion', 'phoneModel', 'hash']
+    let targets = logs.filter(log => {
         keys.forEach(key => {
             const value = log[key] 
             if(null == value || value.length <=0) return false
         })
         return true
     })
-    if(targets.length <= 0) throw Hints.NOTHING_CHANGED
+    if(targets.length <= 0) throw Error(Hints.NOTHING_CHANGED)
     //校验ID是否一致
     const ids = targets.map(log => log.appId)
     const uniqueIds = [...new Set(ids)]
-    if(uniqueIds.length > 1) throw Hints.APPID_NOT_MATCH
+    if(uniqueIds.length > 1) throw Error(Hints.APPID_NOT_MATCH)
     await new Promise((resolve, reject) => {
         const appid = targets[0].appId
         App.findOne({appid}, function(error, row){
@@ -30,7 +30,16 @@ async function save(logs) {
             resolve(row._doc)
         })
     })
-    //存储日志
+    //过滤查询已经存在的日志
+    targets = await Promise.all(targets.map( target => new Promise((resolve, reject) => {
+        Log.count({hash: target.hash}, function(error, count){
+            if(error) return reject(error)
+            const exist = (null == count ? 0 : count) > 0
+            resolve(exist ? null : target)
+        })
+    })))
+    targets = targets.filter(e => e != null)
+    if(targets.length <= 0) throw Error(Hints.NOTHING_CHANGED)
     return new Promise((resolve, reject) => {
         Log.create(targets, function(error, rows){
             if(error) return reject(error)
