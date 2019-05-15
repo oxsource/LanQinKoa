@@ -1,0 +1,30 @@
+{
+  "name": "lan-qin-api",
+  "version": "1.0.0",
+  "description": "LanQin API",
+  "main": "index.js",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.0",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-jwt": "^3.5.1",
+    "koa-router": "^7.4.0",
+    "koa2-cors": "^2.0.6",
+    "log4js": "^4.0.2",
+    "mongoose": "^5.5.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "NODE_ENV=development && supervisor src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:oxsource/LanQinKoa.git"
+  },
+  "keywords": [
+    "log",
+    "api"
+  ],
+  "author": "FengPeng",
+  "license": "ISC"
+}
