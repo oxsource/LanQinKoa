@@ -10,6 +10,7 @@ const logSchema = new mongoose.Schema({
     phoneModel: String,
     osInfo: String,
     sdkInt: Number,
+    hash: {type:String, unique:true},
     //内存信息
     memMax: Number,
     memTotal: Number,
@@ -21,7 +22,7 @@ const logSchema = new mongoose.Schema({
     //错误信息
     errTag: String,
     errStack: String,
-    errStack: String,
+    errExtra: String,
     //用户信息
     userAccount: String,
     lastLoginTime: String,
