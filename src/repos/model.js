@@ -46,6 +46,7 @@ const appSchema = new mongoose.Schema({
     appid: {type: String, unique: true},
     pkgName: {type: String, unique: true},
     forbid: {type: Boolean, default: false},
+    createUid: String,
     createTime: Number
 })
 
