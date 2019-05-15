@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const logSchema = new mongoose.Schema({
     //基本信息
     appId: String,
-    appVersion: Number,
+    appVersion: String,
     appChannel: String,
     happenTime: Number,
     phoneModel: String,
@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
 
 /**应用信息结构 */
 const appSchema = new mongoose.Schema({
-    id: {type: String, unique: true},
+    appid: {type: String, unique: true},
     pkgName: {type: String, unique: true},
     forbid: {type: Boolean, default: false},
     createTime: Number

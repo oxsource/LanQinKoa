@@ -21,7 +21,7 @@ mongoose.connect(conf.mongo.url)
 const app = new Koa()
 app.use(cors())
 app.use(JWT.endpoint)
-app.use(JWT.inject([/^\/$/, /^\/security\/login/]))
+app.use(JWT.inject([/^\/$/, /^\/security\/login/, /^\/report\//]))
 app.use(bodyParser()) //body解析
 app.use(router.routes())
 app.use(router.allowedMethods())
