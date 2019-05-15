@@ -5,7 +5,6 @@ module.exports = {
     NOT_SUPPORT_ROLE: '不支持的角色类型',
     ACCOUNT_NOT_EXIST: '账号不存在',
     ACCOUNT_FORBIDDEN: '账号禁用',
-    SQL_EXECUTE_ERROR: 'SQL执行出错',
     ACCOUNT_OR_PASSWD_ERROR: '账号或密码有误',
     PERMISSION_DENIED: '权限拒绝',
     QUERY_FAILED: "查询失败",
@@ -14,5 +13,9 @@ module.exports = {
     DELETE_FAILED: "删除失败",
     DATA_DUPLICATE: "数据重复冲突",
     NOTHING_CHANGED: "没有任何修改",
+    APPID_NOT_MATCH: "应用ID不一致",
+    DATA_NOT_EXIST: "数据不存在",
+    APP_IS_FORBID: "应用已被冻结",
+    APP_NOT_SUPPORT: "不支持的APP",
     NOT_LOGIN: '登录失效',
 }
