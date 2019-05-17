@@ -3,7 +3,7 @@ const server = {
     prefix: ''
 }
 const mongo = {
-    url: 'localhost',
+    url: 'mongodb://127.0.0.1:27017/lanqin',
 }
 module.exports = {
     server: server,
