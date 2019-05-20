@@ -24,9 +24,9 @@ async function save(logs) {
         const appid = targets[0].appId
         App.findOne({appid}, function(error, row){
             if(error) return reject(error)
-            if(row == null) reject(Hints.APP_NOT_SUPPORT)
+            if(row == null) return reject(Error(Hints.APP_NOT_SUPPORT))
             const app = row._doc
-            if(app.forbid == true) return reject(Hints.APP_IS_FORBID)
+            if(app.forbid == true) return reject(Error(Hints.APP_IS_FORBID))
             resolve(row._doc)
         })
     })
@@ -77,7 +77,7 @@ function detail(id){
         const _id = id
         Log.findOne({_id}, function(error, row){
             if(error) return reject(error)
-            if(null == row) return reject(Hints.DATA_NOT_EXIST)
+            if(null == row) return reject(Error(Hints.DATA_NOT_EXIST))
             resolve(row._doc)
         })
     })

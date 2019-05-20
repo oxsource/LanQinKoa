@@ -15,7 +15,14 @@ Format.initDateJsonFormat()
 //controller注入
 const router = route.routes(`${__dirname}/controller`, conf.server.prefix)
 //connect to mongo
-mongoose.connect(conf.mongo.url)
+const mongoOptions = {
+    useNewUrlParser: true,
+    server: {
+        auto_reconnect: true,
+        poolSize: 20
+    }
+}
+mongoose.connect(conf.mongo.url, mongoOptions)
 
 //create app
 const app = new Koa()
