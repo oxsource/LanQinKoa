@@ -11,7 +11,7 @@
     "koa-router": "^7.4.0",
     "koa2-cors": "^2.0.6",
     "log4js": "^4.0.2",
-    "mongoose": "^5.5.8"
+    "mongoose": "^5.7.5"
   },
   "devDependencies": {},
   "scripts": {
