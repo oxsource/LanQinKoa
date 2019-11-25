@@ -3,19 +3,6 @@ const logger = require('../lib/logger')
 const ReportService = require('../service/report')
 
 async function save(ctx, _) {
-    const params = ctx.request.body
-    let result = null
-    try {
-        await ReportService.save(params)
-        result = Results.success(packet)
-    } catch (error) {
-        logger.error(error)
-        result = Results.failure(error.message)
-    }
-    ctx.response.body = result
-}
-
-async function save(ctx, _) {
     const content = ctx.request.body
     let result = null
     try {
