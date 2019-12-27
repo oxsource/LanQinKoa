@@ -6,16 +6,16 @@ const Hints = require('../constant/hints')
  * @param {日志数组} logs
  */
 async function save(logs) {
-    if (null == logs || logs.length <=0 ) throw Error(Hints.REQ_PARAM_ERROR)
+    if (null == logs || logs.length <= 0 ) throw Error(Hints.REQ_PARAM_ERROR)
     const keys = ['appId', 'appVersion', 'phoneModel', 'hash']
     let targets = logs.filter(log => {
         keys.forEach(key => {
             const value = log[key] 
-            if(null == value || value.length <=0) return false
+            if(null == value || value.length <= 0) return false
         })
         return true
     })
-    if(targets.length <= 0) throw Error(Hints.NOTHING_CHANGED)
+    if(targets.length <= 0) return Promise.resolve([])
     //校验ID是否一致
     const ids = targets.map(log => log.appId)
     const uniqueIds = [...new Set(ids)]
@@ -39,7 +39,7 @@ async function save(logs) {
         })
     })))
     targets = targets.filter(e => e != null)
-    if(targets.length <= 0) throw Error(Hints.NOTHING_CHANGED)
+    if(targets.length <= 0) return Promise.resolve([])
     return new Promise((resolve, reject) => {
         Log.create(targets, function(error, rows){
             if(error) return reject(error)
