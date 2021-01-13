@@ -6,7 +6,7 @@ const logSchema = new mongoose.Schema({
     appId: String,
     appVersion: String,
     appChannel: String,
-    happenTime: Number,
+    happenTime: String,
     phoneModel: String,
     osInfo: String,
     sdkInt: Number,
@@ -29,7 +29,7 @@ const logSchema = new mongoose.Schema({
     //日志级别：普通-0，调试-1，错误-2，奔溃-3
     level: Number,
     //记录时间
-    createTime: Number
+    createTime: String
 })
 
 /**用户信息结构 */
@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
     mobile: {type: String, unique: true},
     pin: String,
     forbid: {type: Boolean, default: false},
-    createTime: Number
+    createTime: String
 })
 
 /**应用信息结构 */
@@ -47,7 +47,7 @@ const appSchema = new mongoose.Schema({
     pkgName: {type: String, unique: true},
     forbid: {type: Boolean, default: false},
     createUid: String,
-    createTime: Number
+    createTime: String
 })
 
 module.exports = {

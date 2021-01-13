@@ -1,5 +1,6 @@
 const {Log, App} = require('../repos/model')
 const Hints = require('../constant/hints')
+const moment = require('moment')
 
 /**
  * 存储日志
@@ -40,6 +41,12 @@ async function save(logs) {
     })))
     targets = targets.filter(e => e != null)
     if(targets.length <= 0) return Promise.resolve([])
+    const tFormat = 'YYYY-MM-DD HH:mm:ss'
+    const now = moment(Date.now()).format(tFormat)
+    targets.forEach(e => {
+        e.happenTime = moment(e.happenTime).format(tFormat)
+        e.createTime = now
+    })
     return new Promise((resolve, reject) => {
         Log.create(targets, function(error, rows){
             if(error) return reject(error)
