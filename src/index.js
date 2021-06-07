@@ -36,10 +36,10 @@ const koaBodyOptions = {
 const app = new Koa()
 app.use(cors())
 app.use(JWT.endpoint)
-app.use(JWT.inject([/^\/$/, /^\/security\/login/, /^\/report\//]))
+app.use(JWT.inject([/^\/$/, /^\/security\/login/, /^\/report\//, /^\/journal\//]))
 app.use(bodyParser()) //body解析
+app.use(koaBody(koaBodyOptions));
 app.use(router.routes())
 app.use(router.allowedMethods())
-app.use(koaBody(koaBodyOptions));
 app.listen(conf.server.port)
 logger.info(`app start at port ${conf.server.port}`)
